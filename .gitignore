@@ -7,7 +7,6 @@ release.properties
 dependency-reduced-pom.xml
 buildNumber.properties
 .mvn/timing.properties
-<<<<<<< HEAD
 target/
 !.mvn/wrapper/maven-wrapper.jar
 
@@ -33,4 +32,3 @@ dist/
 nbdist/
 .nb-gradle/
 =======
->>>>>>> branch 'master' of https://github.com/q419499249/myFirstMavenProject.git
