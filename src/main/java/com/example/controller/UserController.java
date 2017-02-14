@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class UserController {
 	
-	@GetMapping(value="/vin/say")
+	@GetMapping(value="/{vin}/say")
 	public String say(@PathVariable String vin){
 		return vin;
 	}

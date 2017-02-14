@@ -3,7 +3,9 @@ package com.example.configuration;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import org.apache.shiro.cache.ehcache.EhCacheManager;
 import org.apache.shiro.mgt.SecurityManager;
+import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.springframework.context.annotation.Bean;
@@ -32,7 +34,7 @@ public class ShiroConfiguration {
       
         // 必须设置 SecurityManager 
        shiroFilterFactoryBean.setSecurityManager(securityManager);
-      
+       
        //拦截器.
        Map<String,String> filterChainDefinitionMap = new LinkedHashMap<String,String>();
       
@@ -65,11 +67,11 @@ public class ShiroConfiguration {
        return myShiroRealm;
     }
    
-    @Bean
+/*    @Bean
     public SecurityManager securityManager(){
        DefaultWebSecurityManager securityManager =  new DefaultWebSecurityManager();
        return securityManager;
-    }
+    }*/
    
 	
 	/**
@@ -79,7 +81,7 @@ public class ShiroConfiguration {
      * 可见securityManager是整个shiro的核心；
      * @return
      */
-/*    @Bean
+    @Bean
     public EhCacheManager ehCacheManager(){
        System.out.println("ShiroConfiguration.getEhCacheManager()");
        EhCacheManager cacheManager = new EhCacheManager();
@@ -98,5 +100,18 @@ public class ShiroConfiguration {
        securityManager.setCacheManager(ehCacheManager());//这个如果执行多次，也是同样的一个对象;
       
        return securityManager;
-    }*/
+    }
+    
+    /**
+     *  开启shiro aop注解支持.
+     *  使用代理方式;所以需要开启代码支持;
+     * @param securityManager
+     * @return
+     */
+    @Bean
+    public AuthorizationAttributeSourceAdvisor authorizationAttributeSourceAdvisor(SecurityManager securityManager){
+       AuthorizationAttributeSourceAdvisor authorizationAttributeSourceAdvisor = new AuthorizationAttributeSourceAdvisor();
+       authorizationAttributeSourceAdvisor.setSecurityManager(securityManager);
+       return authorizationAttributeSourceAdvisor;
+    }
 }

@@ -15,7 +15,8 @@ public class TemplateUtils {
 		UserInfo userInfo=new UserInfo();
 		userInfo.setUid(1L);
 		userInfo.setName("管理员");
-		userInfo.setPassword("d3c59d25033dbf980d29554025c23a75");
+//		userInfo.setPassword("d3c59d25033dbf980d29554025c23a75");
+		userInfo.setPassword("123456");
 		userInfo.setUsername("admin");
 		userInfo.setSalt("8d78869f470951332959580424d4bf4f");
 		userInfo.setRoleList(sysRoleList);
